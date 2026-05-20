@@ -16,23 +16,28 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
+import { loginSchema } from "../schemas";
+import { useLogin } from "../api/use-login";
 
-const formSchema = z.object({
-  email: z.string().trim().min(1, "Invalid email"),
-  password: z.string().min(1,"Required")
-});
+
 
 export const SignInCard = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate } = useLogin();
+
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({values})
+
+const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+  console.log("Клік відбувся, values:", values);
+  
+  // Викликаємо мутацію
+  mutate({ json: values });
   };
 
   return (
@@ -45,7 +50,19 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
       </div>
       <CardContent className="p-7">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form 
+  onSubmit={form.handleSubmit(
+    (values) => {
+      console.log("Форма валідна, відправляємо:", values);
+      onSubmit(values);
+    },
+    (errors) => {
+      // 💡 Якщо тут щось виведеться в F12 — значить Zod заблокував запит!
+      console.log("Помилки валідації Zod:", errors);
+    }
+  )} 
+  className="space-y-4"
+>
             <FormField
               name="email"
               control={form.control}
