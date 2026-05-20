@@ -13,8 +13,8 @@ export const useLogin = ()=>{
     Error,
     RequestType
     >({
-        mutationFn: async (args) => {
-            const response = await client.api.auth.login["$post"](args);
+        mutationFn: async ({json}) => {
+            const response = await client.api.auth.login["$post"]({json});
             return await response.json();
         },
     });

@@ -34,9 +34,6 @@ export const SignInCard = () => {
 
 
 const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-  console.log("Клік відбувся, values:", values);
-  
-  // Викликаємо мутацію
   mutate({ json: values });
   };
 
@@ -50,19 +47,7 @@ const onSubmit = async (values: z.infer<typeof loginSchema>) => {
       </div>
       <CardContent className="p-7">
         <Form {...form}>
-          <form 
-  onSubmit={form.handleSubmit(
-    (values) => {
-      console.log("Форма валідна, відправляємо:", values);
-      onSubmit(values);
-    },
-    (errors) => {
-      // 💡 Якщо тут щось виведеться в F12 — значить Zod заблокував запит!
-      console.log("Помилки валідації Zod:", errors);
-    }
-  )} 
-  className="space-y-4"
->
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               name="email"
               control={form.control}
