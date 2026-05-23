@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/separator";
+import { SeparatorDot } from "@/components/separatorDot";
 
 import { useLogout } from "../api/use-logout";
 import { useCurrent } from "../api/use-current";
@@ -59,7 +59,7 @@ export const UserButton = () => {
                     </p>
                 </div>
             </div>
-            <Separator className="mb-1" />
+            <SeparatorDot className="mb-1" />
             <DropdownMenuItem 
             onClick={()=> logout()}
             className="h-10 flex items-center justify-center text-amber-700 font-medium cursor-pointer">

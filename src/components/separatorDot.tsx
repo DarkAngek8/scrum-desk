@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-interface SeparatorProps {
+interface SeparatorDotProps {
   className?: string;
   color?: string;
   height?: string;
@@ -9,14 +9,14 @@ interface SeparatorProps {
   direction?: "horizontal" | "vertical";
 };
 
-export const Separator = ({
+export const SeparatorDot = ({
     className,
     color ="#d4d4d8",
     height = "2px",
     dotSize = "2px",
     gapSize = "6px",
     direction = "horizontal"
-}: SeparatorProps) => {
+}: SeparatorDotProps) => {
 
     const isHorizontal = direction ==="horizontal";
 

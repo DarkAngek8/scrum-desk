@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/separator";
+import { SeparatorDot } from "@/components/separatorDot";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -72,7 +72,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
         </CardTitle>
       </CardHeader>
       <div className="px-7">
-        <Separator />
+        <SeparatorDot />
       </div>
       <CardContent className="p-7">
         <Form {...form}>
@@ -169,7 +169,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                 )}
               />
               </div>
-              <Separator className="py-7" />
+              <SeparatorDot className="py-7" />
             <div className="flex items-center justify-between">
               <Button
                 type="button"

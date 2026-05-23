@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Separator } from "@/components/separator";
+import { SeparatorDot } from "@/components/separatorDot";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -60,7 +60,7 @@ export const SignUpCard = () => {
         </CardDescription>
       </CardHeader>
       <div className="px-7">
-        <Separator />
+        <SeparatorDot />
       </div>
       <CardContent className="p-7">
         <Form {...form}>
@@ -120,7 +120,7 @@ export const SignUpCard = () => {
         </Form>
       </CardContent>
       <div className="p-7">
-        <Separator />
+        <SeparatorDot />
       </div>
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
@@ -143,7 +143,7 @@ export const SignUpCard = () => {
         </Button>
       </CardContent>
       <div className="px-7">
-        <Separator />
+        <SeparatorDot />
       </div>
       <CardContent className="p-7 flex items-center justify-center">
               <p>
