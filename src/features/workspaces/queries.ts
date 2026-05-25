@@ -6,7 +6,6 @@ import { Workspace } from "./type";
 import { getMember } from "../members/utils";
 
 export const getWorkspaces = async () => {
-  try {
     
   
   const { databases, account } = await createSessionClient();
@@ -35,9 +34,6 @@ export const getWorkspaces = async () => {
   );
 
   return workspaces;
-  } catch{
-     return {documents: [], total:0}
-  }
 };
 
 interface getWorkspaceProps{
@@ -45,8 +41,7 @@ interface getWorkspaceProps{
 };
 
 export const getWorkspace = async ({workspaceId}:getWorkspaceProps) => {
-  try{
-  
+
   const { databases, account } = await createSessionClient();
 
   const user = await account.get();
@@ -58,7 +53,7 @@ export const getWorkspace = async ({workspaceId}:getWorkspaceProps) => {
   });
 
   if (!member) {
-    return null;
+    throw new Error("Unauthorized");
   }
 
   const workspace = await databases.getDocument<Workspace>(
@@ -68,7 +63,4 @@ export const getWorkspace = async ({workspaceId}:getWorkspaceProps) => {
   );
 
   return JSON.parse(JSON.stringify(workspace));
-  } catch{
-     return {documents: [], total:0}
-  }
 };
