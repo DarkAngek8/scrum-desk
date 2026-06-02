@@ -30,7 +30,7 @@ import { useCreateProject } from "../api/use-create-project";
 
 interface CreateProjectFormProps {
   onCancel?: () => void;
-};
+}
 
 export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
   const workspaceId = useWorkspaceId();
@@ -38,7 +38,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
   const { mutate, isPending } = useCreateProject();
 
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const form = useForm<z.infer<typeof createProjectSchema>>({
     resolver: zodResolver(createProjectSchema.omit({ workspaceId: true })),
     defaultValues: {
@@ -53,11 +53,15 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
       image: values.image instanceof File ? values.image : "",
     };
 
-    mutate({ form: finalValues }, {
-      onSuccess: ({ data }) => {
-        form.reset();
+    mutate(
+      { form: finalValues },
+      {
+        onSuccess: ({ data }) => {
+          form.reset();
+          router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);
+        },
       }
-    });
+    );
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,14 +90,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      Project Name
-                    </FormLabel>
+                    <FormLabel>Project Name</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="Enter project name"
-                      />
+                      <Input {...field} placeholder="Enter project name" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -184,11 +183,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
               >
                 Cancel
               </Button>
-              <Button
-                disabled={isPending}
-                type="submit"
-                size="lg"
-              >
+              <Button disabled={isPending} type="submit" size="lg">
                 Create Project
               </Button>
             </div>
