@@ -1,39 +1,54 @@
 "use client";
 
-import { SeparatorDot } from "@/components/separatorDot";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader, PlusIcon } from "lucide-react";
-import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { useGetTasks } from "../api/use-get-tasks";
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { DataTable } from "./data-table";
-import { columns } from "./columns";
-import { DataFilters } from "./data-filters";
-import { useQueryState } from "nuqs";
-import { useTaskFilters } from "../hooks/use-task-filters";
-import { DataKanban } from "./data-kanban";
-import { useProjectId } from "@/features/projects/hooks/use-project-id";
-import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks";
 import { useCallback } from "react";
+import { useQueryState } from "nuqs";
+import { Loader, PlusIcon } from "lucide-react";
 
-import { TaskStatus } from "../types";
+import { useProjectId } from "@/features/projects/hooks/use-project-id";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+
+import { Button } from "@/components/ui/button";
+import { SeparatorDot } from "@/components/separatorDot";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { DataFilters } from "./data-filters";
+
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+import { DataKanban } from "./data-kanban";
 import { DataCalendar } from "./data-calendar";
 
-export const TaskViewSwitcher = () => {
+import { TaskStatus } from "../types";
+import { useGetTasks } from "../api/use-get-tasks";
+import { useTaskFilters } from "../hooks/use-task-filters";
+import { useCreateTaskModal } from "../hooks/use-create-task-modal";
+import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks";
+
+interface TaskViewSwitcherProps {
+  hideProjectFilter?: boolean;
+}
+
+export const TaskViewSwitcher = ({
+  hideProjectFilter,
+}: TaskViewSwitcherProps) => {
   const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
-  const [view, setView] = useQueryState("task-view", { defaultValue: "table" });
+  const [view, setView] = useQueryState("task-view", {
+    defaultValue: "table",
+  });
+
   const workspaceId = useWorkspaceId();
   const paramProjectId = useProjectId();
+  const { open } = useCreateTaskModal();
+
   const { mutate: bulkUpdate } = useBulkUpdateTasks();
+
   const { data: tasks, isLoading: isLoadingTasks } = useGetTasks({
     workspaceId,
-    projectId,
+    projectId: paramProjectId || projectId,
     assigneeId,
     status,
     dueDate,
   });
-  const { open } = useCreateTaskModal();
 
   const onKanbanChange = useCallback(
     (tasks: { $id: string; status: TaskStatus; position: number }[]) => {
@@ -69,7 +84,7 @@ export const TaskViewSwitcher = () => {
           </Button>
         </div>
         <SeparatorDot className="my-4" />
-        <DataFilters />
+        <DataFilters hideProjectFilter={hideProjectFilter} />
         <SeparatorDot className="my-4" />
         {isLoadingTasks ? (
           <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
