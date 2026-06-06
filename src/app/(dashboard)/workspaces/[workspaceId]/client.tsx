@@ -92,6 +92,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                   <CardContent className="p-4">
                     <p className="text-lg font-medium truncate">{task.name}</p>
                     <div className="flex items-center gap-x-2">
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       <p>{(task as any).project?.name}</p>
                       <div className="size-1 rounded-full bg-neutral-300" />
                       <div className="text-sm text-muted-foreground flex items-center">
@@ -193,13 +194,16 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                 <CardContent className="p-3 flex flex-col items-center gap-x-2">
                   <MemberAvatar
                     className="size-12"
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     name={(member as any).name}
                   />
                   <div className="flex flex-col items-center overflow-hidden">
                     <p className="text-lg font-medium line-clamp-1">
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       {(member as any).name}
                     </p>
                     <p className="text-sm text-muted-foreground line-clamp-1">
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       {(member as any).email}
                     </p>
                   </div>

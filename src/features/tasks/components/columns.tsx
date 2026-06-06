@@ -49,6 +49,7 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
     cell: ({ row }) => {
+      //  eslint-disable-next-line @typescript-eslint/no-explicit-any
       const project = (row.original as any).project;
 
       return (
@@ -77,6 +78,7 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
     cell: ({ row }) => {
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
       const assignee = (row.original as any).assignee;
 
       return (

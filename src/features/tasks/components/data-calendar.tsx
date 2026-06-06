@@ -75,7 +75,9 @@ export const DataCalendar = ({ data }: DataCalendarProps) => {
     start: new Date(task.dueDate),
     end: new Date(task.dueDate),
     title: task.name,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     project: (task as any).project,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assignee: (task as any).assignee,
     status: task.status,
     id: task.$id,

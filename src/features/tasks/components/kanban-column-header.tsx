@@ -4,14 +4,11 @@ import {
   CircleDotDashedIcon,
   CircleDotIcon,
   CircleIcon,
-  PlusIcon,
 } from "lucide-react";
 
 import { snakeCaseToTitleCase } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 import { TaskStatus } from "../types";
-import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 
 interface KanbanColumnHeaderProps {
   board: TaskStatus;
@@ -38,8 +35,6 @@ export const KanbanColumnHeader = ({
   board,
   taskCount,
 }: KanbanColumnHeaderProps) => {
-  const { open } = useCreateTaskModal();
-
   const icon = statusIconMap[board];
 
   return (

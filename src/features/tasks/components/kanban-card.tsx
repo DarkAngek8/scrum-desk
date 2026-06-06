@@ -26,6 +26,7 @@ export const KanbanCard = ({ task }: KanbanCardProps) => {
       <SeparatorDot />
       <div className="flex items-center gap-x-1.5">
         <MemberAvatar
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           name={(task as any).assignee.name}
           fallbackClassName="text-[10px]"
         />
@@ -34,11 +35,14 @@ export const KanbanCard = ({ task }: KanbanCardProps) => {
       </div>
       <div className="flex items-center gap-x-1.5">
         <ProjectAvatar
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           name={(task as any).project.name}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           image={(task as any).project.imageUrl}
           fallbackClassName="text-[10px]"
         />
         <span className="text-xs font-medium">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {(task as any).project.name}
         </span>
       </div>

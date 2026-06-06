@@ -34,9 +34,11 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
         <div className="flex flex-col gap-y-4">
           <OverviewProperty label="Assignee">
             <MemberAvatar
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               name={(task as any).assignee.name}
               className="size-6"
             />
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <p className="text-sm font-medium">{(task as any).assignee.name}</p>
           </OverviewProperty>
           <OverviewProperty label="Due Date">

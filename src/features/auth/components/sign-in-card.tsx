@@ -21,8 +21,6 @@ import Link from "next/link";
 import { loginSchema } from "../schemas";
 import { useLogin } from "../api/use-login";
 
-
-
 export const SignInCard = () => {
   const { mutate, isPending } = useLogin();
 
@@ -34,9 +32,8 @@ export const SignInCard = () => {
     },
   });
 
-
-const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-  mutate({ json: values });
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    mutate({ json: values });
   };
 
   return (
@@ -116,12 +113,12 @@ const onSubmit = async (values: z.infer<typeof loginSchema>) => {
         <SeparatorDot />
       </div>
       <CardContent className="p-7 flex items-center justify-center">
-              <p>
-                Don't have an account? 
-                <Link href="/sign-up">
-                  <span className="text-blue-700">&nbsp;Sign Up</span>
-                </Link>
-              </p>
+        <p>
+          Don&apos;t have an account?
+          <Link href="/sign-up">
+            <span className="text-blue-700">&nbsp;Sign Up</span>
+          </Link>
+        </p>
       </CardContent>
     </Card>
   );
