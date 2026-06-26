@@ -81,7 +81,7 @@ export default function DiplomaInfoModal() {
                       Милисюк Р. В.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
-                      Спеціальність 123 «Комп’ютерна інженерія»
+                      Спеціальність 123 «Комп&apos;ютерна інженерія»
                       <br />
                       Група 2-КТ-22
                     </p>
@@ -98,7 +98,7 @@ export default function DiplomaInfoModal() {
                       Ільїна Т. В.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
-                      Циклова комісія комп’ютерної інженерії
+                      Циклова комісія комп&apos;ютерної інженерії
                     </p>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function DiplomaInfoModal() {
               <div className="flex gap-3 items-start px-2">
                 <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Даний інструмент є невід'ємною частиною практичної
+                  Даний інструмент є невід&apos;ємною частиною практичної
                   кваліфікаційної роботи на здобуття ступеня «Фаховий молодший
                   бакалавр». Надійно інтегровано з хмарними сервісами
                   аутентифікації та NoSQL базами даних.

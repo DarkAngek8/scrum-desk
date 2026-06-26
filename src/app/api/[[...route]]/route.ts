@@ -31,6 +31,7 @@ const routes = app
         },
         200
       );
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       // ПЕРЕВІРКА: Якщо Appwrite відповів, що немає прав (401) або доступ заборонено (403)
       // Це залізобетонний доказ того, що сервер онлайн і прокинувся!
