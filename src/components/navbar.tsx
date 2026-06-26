@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { UserButton } from "@/features/auth/components/user-button";
 
 import { MobileSidebar } from "./mobile-sidebar";
+import AboutPage from "./about";
+import DiplomaInfoModal from "./about";
 
 const pathnameMap = {
   tasks: {
@@ -37,6 +39,7 @@ export const Navbar = () => {
       </div>
       <MobileSidebar />
       <UserButton />
+      <DiplomaInfoModal />
     </nav>
   );
 };
